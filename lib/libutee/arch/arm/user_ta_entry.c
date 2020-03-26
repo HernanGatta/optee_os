@@ -165,6 +165,8 @@ static void uninit_instance(void)
 {
 	__utee_gprof_fini();
 	TA_DestroyEntryPoint();
+	if (__tee_api_system_session)
+		TEE_CloseTASession(__tee_api_system_session);
 	__utee_call_elf_fini_fn();
 }
 

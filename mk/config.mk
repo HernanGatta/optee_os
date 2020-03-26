@@ -619,3 +619,10 @@ CFG_COMPAT_GP10_DES ?= y
 
 # Defines a limit for many levels TAs may call each others.
 CFG_CORE_MAX_SYSCALL_RECURSION ?= 4
+
+# Enables support for OCALLs, allowing TAs to invoke commands on their CA.
+# Since OCALLs are implemented in the System PTA, the latter is a prerequisite.
+CFG_OCALL ?= y
+ifeq ($(CFG_OCALL),y)
+$(call force,CFG_SYSTEM_PTA,y)
+endif
